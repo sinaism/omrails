@@ -13,6 +13,7 @@
  
       <!-- Be sure to leave the brand out there if you want it shown -->
       <a class="brand" href="#">My first Project</a>
+      
  
       <!-- Everything you want hidden at 940px or less, place within here -->
       <div class="nav-collapse collapse">
@@ -22,7 +23,12 @@
         </ul>
 
         <ul class="nav pull-right">
-         <li><%= link_to "Login to my site", '#' %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "Edit you profile :)", edit_user_registration_path %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          <% else %> 
+            <li><%= link_to "Login to my site", new_user_session_path %></li>
+          <% end %>
          <li><%= link_to "magic tricks", '#' %></li>
         </ul>
       </div>
